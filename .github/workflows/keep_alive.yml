@@ -14,10 +14,16 @@ jobs:
         run: |
           curl -X GET "${{ secrets.SUPABASE_URL_GINASIO }}/rest/v1/rpc/version" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_GINASIO }}" \
-          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_GINASIO }}"
 
-      - name: Ping - Segundo Projeto
+      - name: Ping - Projeto Disponibilidade
         run: |
-          curl -X GET "${{ secrets.SUPABASE_URL_PROJETO2 }}/rest/v1/rpc/version" \
-          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_PROJETO2 }}" \
-          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_PROJETO2 }}"
+          curl -X GET "${{ secrets.SUPABASE_URL_DISPONIBILIDADE }}/rest/v1/rpc/version" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_DISPONIBILIDADE }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_DISPONIBILIDADE }}"
+
+      - name: Ping - Projeto Orçamento
+        run: |
+          curl -X GET "${{ secrets.SUPABASE_URL_ORCAMENTO }}/rest/v1/rpc/version" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_ORCAMENTO }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_ORCAMENTO }}"
