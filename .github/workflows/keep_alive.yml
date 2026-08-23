@@ -2,16 +2,22 @@ name: Manter Supabase Ativo
 
 on:
   schedule:
-    # Corre a cada 3 dias às 04:17 UTC (fora das horas de ponta do GitHub)
+    # Corre a cada 3 dias às 04:17 UTC
     - cron: '17 4 */3 * *'
-  workflow_dispatch: # Permite testar manualmente no GitHub
+  workflow_dispatch: # Permite testar manualmente
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Fazer pedido HTTP à API do Supabase
+      - name: Ping - Projeto Ginásio JP&VS
         run: |
-          curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/version" \
-          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+          curl -X GET "${{ secrets.SUPABASE_URL_GINASIO }}/rest/v1/rpc/version" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_GINASIO }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+
+      - name: Ping - Segundo Projeto
+        run: |
+          curl -X GET "${{ secrets.SUPABASE_URL_PROJETO2 }}/rest/v1/rpc/version" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_PROJETO2 }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_PROJETO2 }}"
